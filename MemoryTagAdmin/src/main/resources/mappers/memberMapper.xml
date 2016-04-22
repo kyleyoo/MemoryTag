@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<!-- Mapper설정 및 insertMember설정 -->
+	<mapper namespace = "com.before5.mapper.MemberMapper">
+	
+	<insert id="insertMember" parameterType="com.before5.domain.MemberVO">
+	insert into tbl_member (id,pw,phone,birth,gender,name,grade) values
+	(#{id},#{pw},#{phone},#{birth},#{gender},#{name},#{grade})
+
+	</insert>
+	
+	<!--  read 조회 -->
+	
+	<select id="selectMember" resultType="com.before5.domain.MemberVO" parameterType="string">
+	select * from tbl_member where id=#{id}
+	</select>
+	
+	<!--  readAll 전체조회 -->
+	
+	<select id="selectAll" resultType="com.before5.domain.MemberVO">
+	
+	select * from tbl_member order by regdate desc
+	
+	</select>
+	
+	<!--  update 수정 -->
+	<!-- id,pw,phone,birth,gender,name,grade -->
+	<update id="update" parameterType="String">
+	update tbl_member set pw=#{pw}, phone=#{phone},
+	name=#{name} where id=#{id}
+	</update>
+	
+	<!-- delete 삭제 -->
+	<delete id="delete">
+	delete from tbl_member where id=#{id}
+	</delete>
+	
+	</mapper>
